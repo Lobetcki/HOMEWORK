@@ -13,39 +13,41 @@ public class hw6_methods {
     }
 
 
-    public static void checksLeapYear(int yearLeap) {
+    public static String checksLeapYear(int yearLeap, String leapYear) {
 
+        leapYear = Integer.toString(yearLeap);
         if (yearLeap % 400 == 0) {
-            System.out.println(yearLeap + " год является високосным");
+           return leapYear + " год является високосным.";
         } else if (yearLeap % 100 != 0 && yearLeap % 4 == 0) {
-            System.out.println(yearLeap + " год является високосным");
+            return yearLeap + " год является високосным";
         } else {
-            System.out.println(yearLeap + " год НЕ является високосным");
+            return yearLeap + " год НЕ является високосным";
         }
     }
-
-
     public static void task1() {
         System.out.println("Задача 1");
 
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите проверяемый год:");
         int year = scanner.nextInt();
-        checksLeapYear(year);
+        String yearStr = "";
 
+        yearStr = checksLeapYear(year, yearStr);
+        System.out.println(yearStr);
     }
 
-    public static void choosingVersion(int currentYear, int OS) {
+    public static String choosingVersion(int currentYear, int OS, String answer) {
 
         if (currentYear < 2015) {
             if (OS == 0) {
-                System.out.println("Установите облегченную версию приложения для iOS по ссылке.");
+                return "Установите облегченную версию приложения для iOS по ссылке.";
             } else {
-                System.out.println("Установите облегченную версию приложения для Android по ссылке.");
+               return "Установите облегченную версию приложения для Android по ссылке.";
             }
         } else if (OS == 0) {
-            System.out.println("Установите приложения для iOS по ссылке.");
+            return "Установите приложения для iOS по ссылке.";
         } else {
-            System.out.println("Установите приложения для Android по ссылке.");
+            return "Установите приложения для Android по ссылке.";
         }
     }
 
@@ -56,25 +58,28 @@ public class hw6_methods {
 
         System.out.println("Если у Вас ОС IOS - введите 0, если Android - введите 1.");
         int clientOS = scanner.nextInt();
-        //int currentYear = LocalDate.now().getYear();
+
         System.out.println("Введите год выпуска Вашего телефона");
         int clientDeviceYear = scanner.nextInt();
 
-        choosingVersion(clientDeviceYear, clientOS);
+        String answer = "";
+        answer = choosingVersion(clientDeviceYear, clientOS, answer);
+
+        System.out.println(answer);
     }
 
-    public static int calculatingDeliveryTime(int distance) {
+    public static String calculatingDeliveryTime(int distance, String answer) {
+
 
         if (distance <= 20) {
-            distance = 1;
+            return "Потребуется один день";
         } else if (distance > 20 && distance <= 60) {
-            distance = 2;
+            return "Потребуется два деня";
         } else if (distance > 60 && distance <= 100) {
-            distance = 3;
+            return "Потребуется три дня";
         } else {
-            distance = 1000;
+            return "На такое растояние доставки нет";
         }
-        return distance;
     }
 
     public static void task3() {
@@ -85,8 +90,9 @@ public class hw6_methods {
         System.out.println("Какое растояние до Вас в километрах");
         int deliveryDistance = scanner.nextInt();
 
-        deliveryDistance = calculatingDeliveryTime(deliveryDistance);
+        String answer = "";
+        answer = calculatingDeliveryTime(deliveryDistance, answer);
 
-        System.out.println("Потребуется дней: " + deliveryDistance + " .");
+        System.out.println(answer);
     }
 }
